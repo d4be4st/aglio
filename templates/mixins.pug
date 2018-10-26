@@ -147,6 +147,11 @@ mixin RequestResponseBody(request, collapse, showBlank)
                 .description.text-muted This response has no content.
                 div(style="height: 1px;")
 
+mixin DataStructure(dataStructure)
+    div(style="height: 1px;")
+    div(class='attributesKitContainer') !{dataStructure}
+    div(style="height: 20px;")
+
 mixin Examples(resourceGroup, resource, action)
     each example in action.examples
         each request in example.requests
@@ -204,6 +209,8 @@ mixin Content()
                             //- and responses.
                             if action.parameters.length
                                 +Parameters(action.parameters)
+                            if action.dataStructure
+                                +DataStructure(action.dataStructure)
                             if action.examples
                                 +Examples(resourceGroup, resource, action)
 

@@ -1,40 +1,35 @@
 {
-  "name": "aglio-theme-olio",
-  "version": "1.6.3",
-  "description": "Default theme for the Aglio API Blueprint renderer",
-  "main": "lib/main.js",
-  "scripts": {
-    "build": "coffeelint src/*.coffee && coffee -o lib -c src",
-    "precoverage": "npm run build",
-    "coverage": "istanbul cover -x cache/*.js _mocha -- --compilers coffee:coffee-script/register -R spec",
-    "precoveralls": "npm run coverage",
-    "coveralls": "coveralls <coverage/lcov.info",
-    "pretest": "npm run build",
-    "test": "mocha --compilers coffee:coffee-script/register",
-    "prepublish": "npm run build",
-    "postinstall": "node scripts/setup-cache.js"
-  },
-  "repository": {
+  "_from": "git+https://github.com/d4be4st/aglio.git#publish-patch-for-olio-theme",
+  "_id": "aglio-theme-olio@1.6.3",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/aglio-theme-olio",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "https://github.com/danielgtaylor/aglio"
+    "raw": "aglio-theme-olio@git+https://github.com/d4be4st/aglio.git#publish-patch-for-olio-theme",
+    "name": "aglio-theme-olio",
+    "escapedName": "aglio-theme-olio",
+    "rawSpec": "git+https://github.com/d4be4st/aglio.git#publish-patch-for-olio-theme",
+    "saveSpec": "git+https://github.com/d4be4st/aglio.git#publish-patch-for-olio-theme",
+    "fetchSpec": "https://github.com/d4be4st/aglio.git",
+    "gitCommittish": "publish-patch-for-olio-theme"
   },
-  "keywords": [
-    "api",
-    "blueprint",
-    "protagonist",
-    "snowcrash",
-    "html",
-    "parse",
-    "markdown"
+  "_requiredBy": [
+    "/aglio"
   ],
-  "author": "Daniel G. Taylor",
-  "license": "MIT",
+  "_resolved": "git+https://github.com/d4be4st/aglio.git#8d0f32de0ec88cdf4e3a4655af4f1f1859847e7d",
+  "_spec": "aglio-theme-olio@git+https://github.com/d4be4st/aglio.git#publish-patch-for-olio-theme",
+  "_where": "/Users/stef/dev/other/rails-truck/node_modules/aglio",
+  "author": {
+    "name": "Daniel G. Taylor"
+  },
   "bugs": {
     "url": "https://github.com/danielgtaylor/aglio/issues"
   },
-  "homepage": "https://github.com/danielgtaylor/aglio/tree/olio-theme",
+  "bundleDependencies": false,
   "dependencies": {
-    "attributes-kit": "https://github.com/jk2K/attributes-kit.git#publish-patch",
+    "attributes-kit": "git+https://github.com/jk2K/attributes-kit.git#publish-patch",
     "coffee-script": "^1.8.0",
     "highlight.js": "^9.12.0",
     "less": "^2.7.2",
@@ -49,6 +44,8 @@
     "react-dom": "^15.6.1",
     "stylus": "^0.54.5"
   },
+  "deprecated": false,
+  "description": "Default theme for the Aglio API Blueprint renderer",
   "devDependencies": {
     "chai": "^3.0.0",
     "coffeelint": "^1.7.1",
@@ -57,5 +54,34 @@
     "istanbul": "^0.3.6",
     "mocha": "^2.0.1",
     "rimraf": "^2.4.1"
-  }
+  },
+  "homepage": "https://github.com/danielgtaylor/aglio/tree/olio-theme",
+  "keywords": [
+    "api",
+    "blueprint",
+    "protagonist",
+    "snowcrash",
+    "html",
+    "parse",
+    "markdown"
+  ],
+  "license": "MIT",
+  "main": "lib/main.js",
+  "name": "aglio-theme-olio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielgtaylor/aglio.git"
+  },
+  "scripts": {
+    "build": "coffeelint src/*.coffee && coffee -o lib -c src",
+    "coverage": "istanbul cover -x cache/*.js _mocha -- --compilers coffee:coffee-script/register -R spec",
+    "coveralls": "coveralls <coverage/lcov.info",
+    "postinstall": "node scripts/setup-cache.js",
+    "precoverage": "npm run build",
+    "precoveralls": "npm run coverage",
+    "prepublish": "npm run build",
+    "pretest": "npm run build",
+    "test": "mocha --compilers coffee:coffee-script/register"
+  },
+  "version": "1.6.3"
 }
