@@ -99,7 +99,7 @@ mixin Parameters(params)
                             code= self.urldec(value.value)
                             = ' '
 
-mixin RequestResponse(title, request, collapse)
+mixin RequestResponse(title, request, collapse, showBody)
     .title
         strong
             = title
@@ -110,9 +110,9 @@ mixin RequestResponse(title, request, collapse)
             .collapse-button
                 span.close Hide
                 span.open Show
-    +RequestResponseBody(request, collapse)
+    +RequestResponseBody(request, collapse, showBody)
 
-mixin RequestResponseBody(request, collapse, showBlank)
+mixin RequestResponseBody(request, collapse, showBody, showBlank)
     if request.hasContent || showBlank
         div(class=collapse ? 'collapse-content' : ''): .inner
             if request.description
@@ -128,12 +128,12 @@ mixin RequestResponseBody(request, collapse, showBlank)
                 div(style="height: 1px;")
                 div(class='attributesKitContainer') !{request.attributes}
                 div(style="height: 20px;")
-            if request.body
+            if request.body && showBody
                 h5 Body
                 pre: code
                     != self.highlight(request.body, null, ['json', 'yaml', 'xml', 'javascript'])
                 div(style="height: 1px;")
-            if request.schema
+            if request.schema && showBody
                 div(class='rawExampleHeaderLabelJsonSchema')
                     span Schema
                     div(class='showJSONSchemaButton')
@@ -155,9 +155,9 @@ mixin DataStructure(dataStructure)
 mixin Examples(resourceGroup, resource, action)
     each example in action.examples
         each request in example.requests
-            +RequestResponse('Request', request, true)
+            +RequestResponse('Request', request, true, action.method != 'GET')
         each response in example.responses
-            +RequestResponse('Response', response, true)
+            +RequestResponse('Response', response, true, true)
 
 mixin Content()
     //- Page header and API description
@@ -270,7 +270,7 @@ mixin ContentTriple()
                               each example in action.examples
                                   each request in example.requests
                                       .tab
-                                          +RequestResponseBody(request, false, true)
+                                          +RequestResponseBody(request, false, action.method != 'GET', true)
                                           .tabs
                                               .example-names
                                                   span Responses
@@ -278,7 +278,7 @@ mixin ContentTriple()
                                                       span.tab-button= response.name
                                               each response in example.responses
                                                   .tab
-                                                      +RequestResponseBody(response, false, true)
+                                                      +RequestResponseBody(response, false, true, true)
                           else
                             each example in action.examples
                                 .tabs
@@ -288,7 +288,7 @@ mixin ContentTriple()
                                             span.tab-button= response.name
                                     each response in example.responses
                                         .tab
-                                            +RequestResponseBody(response, false, true)
+                                            +RequestResponseBody(response, false, true, true)
                 .middle
                     .action(class=action.methodLower, id=action.elementId)
                         h4.action-heading
