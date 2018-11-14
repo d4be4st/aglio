@@ -396,6 +396,22 @@ decorate = (api, md, slugCache, verbose) ->
           knownParams[param.name] = true
           newParams.push param
 
+        if action.content
+          for dataStructure in action.content
+            if dataStructure.element != 'dataStructure'
+              continue
+            tempDS = dataStructure.content[0]
+            tempDS = expandDataStructures(tempDS, dataStructures)
+            tempDS["meta"] = {
+              "id": "ATTRIBUTES"
+            }
+            element = React.createElement(AttributesKit.Attributes, {
+              dataStructures: [tempDS],
+              element: tempDS
+            })
+            html = ReactDomServer.renderToStaticMarkup(element)
+            action.dataStructure = html
+
         action.parameters = newParams.reverse()
 
         # Set up the action's template URI
@@ -453,7 +469,7 @@ decorate = (api, md, slugCache, verbose) ->
 
               if item.content and not process.env.DRAFTER_EXAMPLES
                 for dataStructure in item.content
-                  if dataStructure.element is 'dataStructure' && action.metod not 'GET'
+                  if dataStructure.element is 'dataStructure'
                     try
                       item.body = JSON.stringify(renderExample(
                         dataStructure.content[0], dataStructures), null, 2)

@@ -3,3 +3,5 @@ npm-debug.log
 coverage
 cache
 .idea/
+test-js/
+package-lock.json
